@@ -2,6 +2,8 @@ import {FlatList, Image, ListRenderItem, StatusBar, StyleSheet, Text, View} from
 import {PADDING, WIDTH} from "./src/Constants/Constants";
 import React from "react";
 import {BasketIcon} from "./SVG_icons/BasketIcon";
+import {Header} from "./src/Header/Header";
+import {headerStyles} from "./src/Header/Header";
 
 type ItemType = {
     id: number
@@ -67,6 +69,9 @@ export default function App() {
                 numColumns={2}
                 renderItem={renderItem}
                 data={fakeData}
+                ListHeaderComponent={<Header/>}
+                ListHeaderComponentStyle={headerStyles.header}
+                stickyHeaderIndices={[0]}
             />
         </View>
     );
@@ -75,7 +80,6 @@ export default function App() {
 
 const styles = StyleSheet.create({
     container: {
-        paddingTop: 60,
         backgroundColor: '#fff',
     },
     itemPhone: {
