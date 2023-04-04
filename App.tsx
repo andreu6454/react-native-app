@@ -4,6 +4,7 @@ import React from "react";
 import {BasketIcon} from "./SVG_icons/BasketIcon";
 import {Header} from "./src/Header/Header";
 import {headerStyles} from "./src/Header/Header";
+import {Footer, footerStyles} from "./src/Footer/Footer";
 
 type ItemType = {
     id: number
@@ -69,8 +70,10 @@ export default function App() {
                 numColumns={2}
                 renderItem={renderItem}
                 data={fakeData}
-                ListHeaderComponent={<Header/>}
+                ListHeaderComponent={Header}
                 ListHeaderComponentStyle={headerStyles.header}
+                ListFooterComponent={Footer}
+                ListFooterComponentStyle={footerStyles.footer}
                 stickyHeaderIndices={[0]}
             />
         </View>
