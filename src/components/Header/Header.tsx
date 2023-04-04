@@ -1,6 +1,6 @@
 import {Platform, Pressable, StyleSheet, View} from "react-native";
-import {PADDING} from "../Constants/Constants";
-import {BasketIcon} from "../../SVG_icons/BasketIcon";
+import {PADDING} from "../../Constants/Constants";
+import {BasketIcon} from "../../../SVG_icons/BasketIcon";
 
 export const Header = () => {
     return <View style={headerStyles.headerContent}>

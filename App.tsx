@@ -1,10 +1,11 @@
 import {FlatList, Image, ListRenderItem, StatusBar, StyleSheet, Text, View} from 'react-native';
-import {PADDING, WIDTH} from "./src/Constants/Constants";
+import {HEIGHT, PADDING, WIDTH} from "./src/Constants/Constants";
 import React from "react";
 import {BasketIcon} from "./SVG_icons/BasketIcon";
-import {Header} from "./src/Header/Header";
-import {headerStyles} from "./src/Header/Header";
-import {Footer, footerStyles} from "./src/Footer/Footer";
+import {Header} from "./src/components/Header/Header";
+import {headerStyles} from "./src/components/Header/Header";
+import {Footer, footerStyles} from "./src/components/Footer/Footer";
+import {EmptyList} from "./src/components/EmptyList/EmptyList";
 
 type ItemType = {
     id: number
@@ -65,7 +66,7 @@ export default function App() {
         <View style={styles.container}>
             <StatusBar barStyle={'dark-content'}></StatusBar>
             <FlatList
-                contentContainerStyle={{paddingHorizontal: PADDING}}
+                contentContainerStyle={{paddingHorizontal: PADDING, flexGrow: 1}}
                 columnWrapperStyle={{justifyContent: 'space-between'}}
                 numColumns={2}
                 renderItem={renderItem}
@@ -74,6 +75,7 @@ export default function App() {
                 ListHeaderComponentStyle={headerStyles.header}
                 ListFooterComponent={Footer}
                 ListFooterComponentStyle={footerStyles.footer}
+                ListEmptyComponent={EmptyList}
                 stickyHeaderIndices={[0]}
             />
         </View>
@@ -84,6 +86,8 @@ export default function App() {
 const styles = StyleSheet.create({
     container: {
         backgroundColor: '#fff',
+        width: WIDTH,
+        height: HEIGHT
     },
     itemPhone: {
         backgroundColor: '#fff',
