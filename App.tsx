@@ -1,13 +1,12 @@
-import {FlatList, Image, ListRenderItem, StatusBar, StyleSheet, Text, View} from 'react-native';
+import {FlatList, StatusBar, StyleSheet, View} from 'react-native';
 import {HEIGHT, PADDING, WIDTH} from "./src/Constants/Constants";
 import React from "react";
-import {BasketIcon} from "./SVG_icons/BasketIcon";
-import {Header} from "./src/components/Header/Header";
-import {headerStyles} from "./src/components/Header/Header";
+import {Header, headerStyles} from "./src/components/Header/Header";
 import {Footer, footerStyles} from "./src/components/Footer/Footer";
 import {EmptyList} from "./src/components/EmptyList/EmptyList";
+import {RenderItem} from "./src/components/RenderItem/RenderItem";
 
-type ItemType = {
+export type ItemType = {
     id: number
     title: string
     price: number
@@ -39,37 +38,15 @@ const fakeData: ItemType[] = [...Array(12)].map((_, index) => ({
 }))
 
 export default function App() {
-    const renderItem: ListRenderItem<ItemType> = ({item}) => {
-        return <View style={styles.itemPhone} key={item.id}>
-            <Image
-                style={styles.phoneImage}
-                source={item.image}
-                resizeMode={'contain'}
-            />
-            <View style={styles.phoneInfo}>
-                <Text>{item.title}</Text>
-                <View style={styles.containerPhonePrice}>
-                    <Text style={styles.phonePrice}>
-                        {"$" + " " + item.price}
-                    </Text>
-                    <Text>
-                        <BasketIcon
-                            style={{justifyContent: 'flex-end'}}
-                        />
-                    </Text>
-                </View>
-            </View>
-        </View>
-    }
 
     return (
         <View style={styles.container}>
-            <StatusBar barStyle={'dark-content'}></StatusBar>
+            <StatusBar barStyle={'light-content'}></StatusBar>
             <FlatList
                 contentContainerStyle={{paddingHorizontal: PADDING, flexGrow: 1}}
                 columnWrapperStyle={{justifyContent: 'space-between'}}
                 numColumns={2}
-                renderItem={renderItem}
+                renderItem={RenderItem}
                 data={fakeData}
                 ListHeaderComponent={Header}
                 ListHeaderComponentStyle={headerStyles.header}
@@ -89,39 +66,4 @@ const styles = StyleSheet.create({
         width: WIDTH,
         height: HEIGHT
     },
-    itemPhone: {
-        backgroundColor: '#fff',
-        width: (WIDTH - PADDING * 2) / 2 - 8,
-        marginVertical: 6,
-        borderWidth: 1,
-        borderColor: 'rgba(0,0,0,0.4)',
-        borderRadius: 5,
-        paddingTop: 12
-    },
-    phoneImage: {
-        width: (WIDTH - PADDING * 2) / 2 - 8,
-        height: (WIDTH - PADDING * 2) / 2 - 8
-    },
-    phoneInfo: {
-        marginTop: 19,
-        marginBottom: 22,
-        paddingLeft: 12,
-        paddingRight: 15
-    },
-    phoneTitle: {
-        fontSize: 12,
-        fontWeight: '500',
-        lineHeight: 16
-    },
-    containerPhonePrice: {
-        marginTop: 17,
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between'
-    },
-    phonePrice: {
-        fontWeight: '400',
-        fontSize: 12,
-        lineHeight: 12
-    }
 });

@@ -1,11 +1,12 @@
 import {Platform, Pressable, StyleSheet, View} from "react-native";
 import {PADDING} from "../../Constants/Constants";
 import {BasketIcon} from "../../../SVG_icons/BasketIcon";
+import MenuIcon from "../../../SVG_icons/MenuIcon";
 
 export const Header = () => {
     return <View style={headerStyles.headerContent}>
         <Pressable>
-            <BasketIcon colorFill={'#fff'}/>
+            <MenuIcon colorFill={'#fff'}/>
         </Pressable>
         <Pressable>
             <BasketIcon colorFill={'#fff'}/>
