@@ -43,6 +43,7 @@ export default function App() {
         <View style={styles.container}>
             <StatusBar barStyle={'light-content'}></StatusBar>
             <FlatList
+                bounces={false}
                 contentContainerStyle={{paddingHorizontal: PADDING, flexGrow: 1}}
                 columnWrapperStyle={{justifyContent: 'space-between'}}
                 numColumns={2}
@@ -62,7 +63,7 @@ export default function App() {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#fff',
+        backgroundColor: '#e5e5e5',
         width: WIDTH,
         height: HEIGHT
     },
