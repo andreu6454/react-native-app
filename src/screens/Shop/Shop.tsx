@@ -3,7 +3,7 @@ import {RenderItem} from "../../components/RenderItem/RenderItem";
 import {Header, headerStyles} from "../../components/Header/Header";
 import {Footer, footerStyles} from "../../components/Footer/Footer";
 import {EmptyList} from "../../components/EmptyList/EmptyList";
-import {FlatList} from "react-native";
+import {FlatList, View} from "react-native";
 import React from "react";
 
 export type ItemType = {
@@ -45,8 +45,7 @@ export const Shop = () => {
         numColumns={2}
         renderItem={RenderItem}
         data={fakeData}
-        ListHeaderComponent={Header}
-        ListHeaderComponentStyle={headerStyles.header}
+        ListHeaderComponent={<View/>}
         ListFooterComponent={Footer}
         ListFooterComponentStyle={footerStyles.footer}
         ListEmptyComponent={EmptyList}

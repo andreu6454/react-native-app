@@ -2,7 +2,7 @@ import {Image, ListRenderItem, StyleSheet, Text, View} from "react-native";
 import {BasketIcon} from "../../../SVG_icons/BasketIcon";
 import React from "react";
 import {PADDING, WIDTH} from "../../constants/Constants";
-import {ItemType} from "../../screens/shop/Shop";
+import {ItemType} from "../../screens/Shop/Shop";
 
 export const RenderItem: ListRenderItem<ItemType> = ({item}) => {
     return <View style={styles.itemPhone} key={item.id}>
