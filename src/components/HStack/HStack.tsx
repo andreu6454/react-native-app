@@ -1,6 +1,6 @@
 import React, {ReactNode} from "react";
 import {ScrollView, View, ViewProps} from "react-native";
-import {PADDING, WIDTH} from "../Constants/Constants";
+import {PADDING, WIDTH} from "../../constants/Constants";
 
 interface HStackPropsType extends ViewProps {
     children: ReactNode

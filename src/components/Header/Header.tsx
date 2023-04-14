@@ -1,5 +1,5 @@
 import {Platform, Pressable, StyleSheet, View} from "react-native";
-import {PADDING} from "../../Constants/Constants";
+import {PADDING} from "../../constants/Constants";
 import {BasketIcon} from "../../../SVG_icons/BasketIcon";
 import MenuIcon from "../../../SVG_icons/MenuIcon";
 

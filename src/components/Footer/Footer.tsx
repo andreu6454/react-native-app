@@ -1,5 +1,5 @@
 import {StyleSheet, Text, View} from "react-native";
-import {PADDING} from "../../Constants/Constants";
+import {PADDING} from "../../constants/Constants";
 
 export const Footer = () => {
     return (
