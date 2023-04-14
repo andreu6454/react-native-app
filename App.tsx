@@ -1,65 +1,55 @@
-import {FlatList, StatusBar, StyleSheet, View} from 'react-native';
-import {HEIGHT, PADDING, WIDTH} from "./src/Constants/Constants";
-import React from "react";
-import {Header, headerStyles} from "./src/components/Header/Header";
-import {Footer, footerStyles} from "./src/components/Footer/Footer";
-import {EmptyList} from "./src/components/EmptyList/EmptyList";
-import {RenderItem} from "./src/components/RenderItem/RenderItem";
+import {StyleSheet} from 'react-native';
+import {HEIGHT, WIDTH} from "./src/constants/Constants";
+import * as React from 'react';
+import {NavigationContainer} from "@react-navigation/native";
+import {createNativeStackNavigator} from "@react-navigation/native-stack";
+import {createStackNavigator} from '@react-navigation/stack';
+import {HomeScreen} from "./src/screens/Home/HomeScreen";
+import {MainStackType} from "./src/screens/types";
+import {DetailsScreen} from "./src/screens/Details/DetailsScreen";
+import {SettingsScreen} from "./src/screens/Settings/SettingsScreen";
+import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
+import {createDrawerNavigator} from "@react-navigation/drawer";
+import {ModalScreen} from "./src/screens/Modal/ModalScreen";
+import {Shop} from "./src/screens/Shop/Shop";
 
-export type ItemType = {
-    id: number
-    title: string
-    price: number
-    image: any
-}
-const images = [
-    require('./assets/image1.png'),
-    require('./assets/image2.png'),
-    require('./assets/image3.png'),
-    require('./assets/image4.png'),
-    require('./assets/image5.png'),
-    require('./assets/image6.png'),
-]
-const titles = [
-    'Apple iPhone 13 128GB Blue',
-    'Apple iPhone 14 Pro 128GB Space Black',
-    'Apple iPhone 12 128GB Purple',
-    'Apple iPhone SE 128GB 2022 Midnight',
-    'Apple iPhone 13 512GB Midnight',
-    'Apple iPhone 14 Pro Max 256GB Purple'
-]
-const prices = [999, 1199, 799, 599, 899, 1199]
 
-const fakeData: ItemType[] = [...Array(12)].map((_, index) => ({
-    id: index + 1,
-    title: titles[index % titles.length],
-    price: prices[index % prices.length],
-    image: images[index % images.length],
-}))
+const Drawer = createDrawerNavigator<MainStackType>();
 
+const RootStack = createStackNavigator<MainStackType>();
+
+
+// export default function App() {
+//     return (
+//         <NavigationContainer>
+//             <Drawer.Navigator>
+//                 <Drawer.Screen name="Home" component={HomeScreen}/>
+//                 <Drawer.Screen name="Settings">{(props) => <SettingsScreen {...props} age={21}/>
+//                 }</Drawer.Screen>
+//                 <Drawer.Screen name="Details" component={DetailsScreen}></Drawer.Screen>
+//
+//             </Drawer.Navigator>
+//         </NavigationContainer>
+//     );
+// }
 export default function App() {
-
     return (
-        <View style={styles.container}>
-            <StatusBar barStyle={'light-content'}></StatusBar>
-            <FlatList
-                bounces={false}
-                contentContainerStyle={{paddingHorizontal: PADDING, flexGrow: 1}}
-                columnWrapperStyle={{justifyContent: 'space-between'}}
-                numColumns={2}
-                renderItem={RenderItem}
-                data={fakeData}
-                ListHeaderComponent={Header}
-                ListHeaderComponentStyle={headerStyles.header}
-                ListFooterComponent={Footer}
-                ListFooterComponentStyle={footerStyles.footer}
-                ListEmptyComponent={EmptyList}
-                stickyHeaderIndices={[0]}
-            />
-        </View>
+        <NavigationContainer>
+            <RootStack.Navigator>
+                <RootStack.Group>
+                    <RootStack.Screen name="Home" component={HomeScreen}/>
+                    <RootStack.Screen name="Details" component={DetailsScreen}/>
+                    <RootStack.Screen name="Settings">{(props) => {
+                        return <SettingsScreen {...props} age={21}/>
+                    }}</RootStack.Screen>
+                </RootStack.Group>
+                <RootStack.Group screenOptions={{presentation: 'modal'}}>
+                    <RootStack.Screen name="MyModal" component={Shop}/>
+                </RootStack.Group>
+            </RootStack.Navigator>
+        </NavigationContainer>
     );
 }
-
 
 const styles = StyleSheet.create({
     container: {
